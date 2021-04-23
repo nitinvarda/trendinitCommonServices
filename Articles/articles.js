@@ -1,4 +1,4 @@
-import firebase, {firebaseApi,storageRef} from '../..firebaseConfig.js'
+import firebase, {firebaseApi,storage} from '../..firebaseConfig.js'
 
 
 const searchFilter = {
@@ -17,10 +17,10 @@ const descending = (value, startAt = 0) => {
 const articles = {
     create:async(details)=>{
         try{
-            const articleImage = storageRef.child(`images/${details.articleImage.name}`)
+            const articleImage = storage.child(`images/${details.articleImage.name}`)
             const uploadImage = await articleImage.put(details.articleImage)
 
-            const imageUrl = await storageRef.child(`images/${details.articleImage.name}`).getDownloadURL()
+            const imageUrl = await storage.child(`images/${details.articleImage.name}`).getDownloadURL()
             const currentUser = await firebase.auth().currentUser
             const timeStamp = firebase.firestore.FieldValue.serverTimestamp
             const createArticle = await firebaseApi.articles.add({
@@ -67,7 +67,7 @@ const articles = {
     },
     delete:async(id,imageName)=>{
         try{
-            const deleteImage = await storageRef.child(`images/${imageName}`).delete()
+            const deleteImage = await storage.child(`images/${imageName}`).delete()
             const deleteArticle = await firebaseApi.articles.doc(id).delete()
             return 'deleted'
 
