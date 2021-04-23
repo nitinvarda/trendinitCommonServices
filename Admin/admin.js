@@ -1,4 +1,4 @@
-import firebase,{firebaseApi} from '../firebase.js'
+import firebase,{firebaseApi} from '../..firebaseConfig.js'
 
 
 
