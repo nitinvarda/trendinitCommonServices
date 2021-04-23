@@ -1,4 +1,4 @@
-import firebase, {firebaseApi,storage} from '../..firebaseConfig.js'
+import firebase, {firebaseApi,storage} from '../../firebaseConfig.js'
 
 
 const searchFilter = {
